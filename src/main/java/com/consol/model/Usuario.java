@@ -10,21 +10,24 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotEmpty
     private String nomeMorador;
 
     @NotEmpty
     private String rg;
+
     @NotEmpty
     @Email(message = "Email inválido, gentileza conferir")
     private String email;
+
     @NotEmpty
     private String telContato;
+
     @NotEmpty
     private String numAp;
 
-
-
+    private boolean log;
 
     @ManyToOne
     @JoinColumn(name = "codigo_condominio")
@@ -33,7 +36,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nomeMorador, String rg,  String email, String telContato, String numAp, Condominio condominio) {
+    public Usuario(Long id, String nomeMorador, String rg,  String email, String telContato, String numAp, Condominio condominio, Boolean log) {
         this.id = id;
         this.nomeMorador = nomeMorador;
         this.rg = rg;
@@ -41,6 +44,7 @@ public class Usuario {
         this.telContato = telContato;
         this.numAp = numAp;
         this.condominio = condominio;
+        this.log=false;
     }
 
     public Long getId() {
@@ -98,4 +102,16 @@ public class Usuario {
     public void setRg(String rg) {
         this.rg = rg;
     }
+
+    public boolean isLog() {
+        return log;
+    }
+
+    public void setLog(boolean log) {
+        this.log = log;
+    }
+
+
+    
 }
+
