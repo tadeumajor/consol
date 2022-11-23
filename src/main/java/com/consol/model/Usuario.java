@@ -3,6 +3,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 
 @Entity
@@ -21,6 +22,10 @@ public class Usuario {
     @Email(message = "Email inválido, gentileza conferir")
     private String email;
 
+    @NotBlank
+    @Size(min = 8, message = "Necessário no minimo oito (8) caracteres")
+    private String password;
+
     @NotEmpty
     private String telContato;
 
@@ -36,11 +41,12 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nomeMorador, String rg,  String email, String telContato, String numAp, Condominio condominio, Boolean log) {
+    public Usuario(Long id, String nomeMorador, String rg,  String email,String password, String telContato, String numAp, Condominio condominio, Boolean log) {
         this.id = id;
         this.nomeMorador = nomeMorador;
         this.rg = rg;
         this.email = email;
+        this.password = password;
         this.telContato = telContato;
         this.numAp = numAp;
         this.condominio = condominio;
@@ -111,7 +117,13 @@ public class Usuario {
         this.log = log;
     }
 
+    public String getPassword() {
+        return password;
+    }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
     
 }
 

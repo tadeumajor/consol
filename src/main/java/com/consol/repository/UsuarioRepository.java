@@ -10,7 +10,10 @@ import com.consol.model.Usuario;
 public interface UsuarioRepository extends CrudRepository<Usuario, Long> {
 
     Iterable<Usuario> findByCondominio(Condominio condominio);
+    
     Usuario findByrg(String rg);
+    
+    Usuario findByEmail(String email);
 
 }
 
