@@ -18,7 +18,7 @@ public class Usuario {
     private String nomeMorador;
 
     @NotEmpty
-    private int cpf;
+    private String cpf;
 
     @NotEmpty
     @Email(message = "Email inválido, gentileza conferir")
@@ -43,7 +43,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario( String nomeMorador, int cpf,  String email,String password, String telContato, String numAp, Condominio condominio, Boolean log) {
+    public Usuario( String nomeMorador, String cpf,  String email,String password, String telContato, String numAp, Condominio condominio, Boolean log) {
         this.nomeMorador = nomeMorador;
         this.cpf = cpf;
         this.email = email;
