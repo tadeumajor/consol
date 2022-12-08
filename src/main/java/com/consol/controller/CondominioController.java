@@ -9,12 +9,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-@Controller
+@RestController
 @CrossOrigin(origins ="http://localhost:8080/", maxAge = 3600)
 @RequestMapping("/condominios")
 public class CondominioController {

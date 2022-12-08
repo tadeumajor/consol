@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,7 +21,7 @@ import com.consol.DTO.UsuarioDTO;
 import com.consol.model.Usuario;
 import com.consol.service.UsuarioService;
 
-@Controller
+@RestController
 @CrossOrigin(origins ="http://localhost:8080/", maxAge = 3600)
 @RequestMapping("/usuarios")
 public class UsuarioController {
@@ -58,10 +57,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/{login}")
-    public ResponseEntity<Boolean> login(@RequestBody UsuarioDTO usuarioDTO){
-
+    public ResponseEntity<Object> login(@Valid @RequestBody UsuarioDTO usuarioDTO){
         return usuarioService.login(usuarioDTO);
     }
 
-    
 }

@@ -12,7 +12,7 @@ function postUsuario () {
     xhr.setRequestHeader('Content-type', 'application/json');
 
     xhr.send (
-`{
+        `{
         "nomeMorador": "${nome}",
         "cpf": "${cpf}",
         "email": "${email}",

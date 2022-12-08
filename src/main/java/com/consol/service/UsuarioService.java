@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.consol.DTO.UsuarioDTO;
 import com.consol.model.Usuario;
 import com.consol.repository.UsuarioRepository;
+import com.consol.util.Response;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,17 +22,21 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public ResponseEntity<Boolean> login(UsuarioDTO usuario){
+    public ResponseEntity<Object> login(UsuarioDTO usuario){
 
         Usuario usuarioBusca = (Usuario) usuarioRepository.findByEmail(usuario.getEmail());
-
-        if(usuario.getEmail().equals(usuarioBusca.getEmail()) && usuario.getPassword().equals(usuarioBusca.getPassword())){
-            usuarioBusca.setLog(true);
-            usuarioRepository.save(usuarioBusca);
-            return ResponseEntity.status(HttpStatus.OK).body(true);
+        
+        if(usuarioBusca != null) {
+            if(usuario.getEmail().equals(usuarioBusca.getEmail()) && usuario.getPassword().equals(usuarioBusca.getPassword())){
+                usuarioBusca.setLog(true);
+                usuarioRepository.save(usuarioBusca);
+                return ResponseEntity.status(HttpStatus.OK).body(new Response("Logado com sucesso.", 200));
+            } else {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Response("Senha inválida", 401));
+            }
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(false);
-        }  
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new Response("Usuário não encontrado.", 401));
+        }
     }
     
     public Usuario add(Usuario usuario) {
