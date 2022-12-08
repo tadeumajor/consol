@@ -36,6 +36,7 @@ public class UsuarioService {
     
     public Usuario add(Usuario usuario) {
         return usuarioRepository.save(usuario);
+        
     }
 
     public void delete(Long id) {

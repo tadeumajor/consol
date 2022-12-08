@@ -5,7 +5,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+import lombok.Data;
 
+@Data
 @Entity
 public class Usuario {
     @Id
@@ -16,7 +18,7 @@ public class Usuario {
     private String nomeMorador;
 
     @NotEmpty
-    private String rg;
+    private int cpf;
 
     @NotEmpty
     @Email(message = "Email inválido, gentileza conferir")
@@ -41,89 +43,18 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Long id, String nomeMorador, String rg,  String email,String password, String telContato, String numAp, Condominio condominio, Boolean log) {
-        this.id = id;
+    public Usuario( String nomeMorador, int cpf,  String email,String password, String telContato, String numAp, Condominio condominio, Boolean log) {
         this.nomeMorador = nomeMorador;
-        this.rg = rg;
+        this.cpf = cpf;
         this.email = email;
         this.password = password;
         this.telContato = telContato;
         this.numAp = numAp;
+        this.log = false;
         this.condominio = condominio;
-        this.log=false;
+        
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNomeMorador() {
-        return nomeMorador;
-    }
-
-    public void setNomeMorador(String nomeMorador) {
-        this.nomeMorador = nomeMorador;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelContato() {
-        return telContato;
-    }
-
-    public void setTelContato(String telContato) {
-        this.telContato = telContato;
-    }
-
-    public String getNumAp() {
-        return numAp;
-    }
-
-    public void setNumAp(String numAp) {
-        this.numAp = numAp;
-    }
-
-    public Condominio getCondominio() {
-        return condominio;
-    }
-
-    public void setCondominio(Condominio condominio) {
-        this.condominio = condominio;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
-    public boolean isLog() {
-        return log;
-    }
-
-    public void setLog(boolean log) {
-        this.log = log;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
     
 }
 
